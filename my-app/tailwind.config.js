@@ -4,6 +4,13 @@ module.exports = {
   theme: {
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    [
+      "postcss-preset-env",
+      {
+        // Options
+      },
+    ],
+  ],
 }
 

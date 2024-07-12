@@ -1,44 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import TodoRowItem from './components/TodoRowItem';
 
 function App() {
-  return (
-      <div>
-        <div>
-          <div>
-            Your Todo's
-          </div>
-            <div>
-                <table>
-                    <thead>
+    return (
+        <div className="min-h-screen bg-zinc-800 p-6">
+            <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
+                <div className="text-xl font-semibold mb-4">
+                    Your To do's
+                </div>
+                <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-zinc-200">
+                        <thead className="bg-zinc-50">
                         <tr>
-                            <th scope={'col'}>#</th>
-                            <th scope={'col'}>Description</th>
-                            <th scope={'col'}>Assigned</th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                                #
+                            </th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                                Description
+                            </th>
+                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
+                                Assigned
+                            </th>
                         </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope={'row'}>1</th>
-                            <td>Do the dishes</td>
-                            <td>John</td>
-                        </tr>
-                        <tr>
-                            <th scope={'row'}>2</th>
-                            <td>Walk the dog</td>
-                            <td>John</td>
-                        </tr>
-                        <tr>
-                            <th scope={'row'}>3</th>
-                            <td>Wash the car</td>
-                            <td>John</td>
-                        </tr>
-                    </tbody>
-                </table>
+                        </thead>
+                        <tbody className="bg-white divide-y divide-zinc-200">
+                        <TodoRowItem />
+                        <TodoRowItem />
+                        <TodoRowItem />
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-      </div>
-  );
+    );
 }
 
 export default App;
