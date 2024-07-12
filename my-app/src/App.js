@@ -1,33 +1,24 @@
 import TodoRowItem from './components/TodoRowItem';
+import TodoTable from "./components/TodoTable";
 
 function App() {
+
+    const todos = [
+        {rowNumber: 1, rowDesc: 'Feed puppy', rowAssigned: 'User One'},
+        {rowNumber: 2, rowDesc: 'Water plants', rowAssigned: 'User Two'},
+        {rowNumber: 3, rowDesc: 'Make dinner', rowAssigned: 'User One'},
+        {rowNumber: 4, rowDesc: 'Do homeworks', rowAssigned: 'User Four'},
+    ]
+
     return (
         <div className="min-h-screen bg-zinc-800 p-6">
             <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
                 <div className="text-xl font-semibold mb-4">
-                    Your To do's
+                    To-do List
                 </div>
                 <div className="overflow-x-auto">
-                    <table className="min-w-full divide-y divide-zinc-200">
-                        <thead className="bg-zinc-50">
-                        <tr>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                #
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                Description
-                            </th>
-                            <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-zinc-500 uppercase tracking-wider">
-                                Assigned
-                            </th>
-                        </tr>
-                        </thead>
-                        <tbody className="bg-white divide-y divide-zinc-200">
-                        <TodoRowItem />
-                        <TodoRowItem />
-                        <TodoRowItem />
-                        </tbody>
-                    </table>
+                    <TodoTable todos={todos}/>
+                    <button></button>
                 </div>
             </div>
         </div>
