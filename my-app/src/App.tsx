@@ -11,8 +11,10 @@ function App() {
         {rowNumber: 4, rowDesc: 'Do homeworks', rowAssigned: 'User Four'}
     ])
 
-    const addTodo = (description, assigned) => {
-        let rowNumber
+    const [showAddTodoForm, setShowAddTodoForm] = useState(false)
+
+    const addTodo = (description: string, assigned: string) => {
+        let rowNumber = 0
         if (todos.length > 0) {
             rowNumber = todos[todos.length - 1].rowNumber + 1
         } else {
@@ -26,18 +28,31 @@ function App() {
         setTodos(todos => [...todos, newTodo])
     }
 
+    const deleteTodo = (deleteTodoRowNumber) => {
+        let filtered = todos.filter(function (value) {
+            return value.rowNumber !== deleteTodoRowNumber;
+        })
+        setTodos(filtered);
+    }
+
     return (
         <div className="min-h-screen bg-zinc-800 p-6">
             <div className="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
                 <div className="text-xl font-semibold mb-4">
                     To-do List
                 </div>
-                <div className="overflow-x-auto">
-                    <TodoTable todos={todos}/>
+                <div className="space-x-2">
+                    <TodoTable todos={todos} deleteTodo={deleteTodo}/>
+                    <button className={"bg-zinc-500 text-white px-4 py-2 rounded-lg mt-4 ml-4"}
+                            onClick={() => setShowAddTodoForm(!showAddTodoForm)}>
+                        {showAddTodoForm ? 'Hide' : 'Add New Todo'}
+                    </button>
                     <button className="bg-zinc-500 text-white px-4 py-2 rounded-lg mt-4" onClick={() => setTodos([])}>
                         Clear List
                     </button>
-                    <NewTodoForm addTodo={addTodo}/>
+                    {showAddTodoForm &&
+                        <NewTodoForm addTodo={addTodo}/>
+                    }
                 </div>
             </div>
         </div>

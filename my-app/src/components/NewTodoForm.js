@@ -15,7 +15,6 @@ function NewTodoForm(props) {
         }
     };
 
-
     return (
         <div className="mt-5">
             <form className="flex justify-start" onSubmit={handleSubmit}>
