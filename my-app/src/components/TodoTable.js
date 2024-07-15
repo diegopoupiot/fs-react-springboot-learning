@@ -21,9 +21,11 @@ function TodoTable(props) {
             </thead>
             <tbody className="bg-white divide-y divide-zinc-200">
             {props.todos.map(todo => (
-                <TodoRowItem rowNumber={todo.rowNumber}
-                             rowDesc={todo.rowDesc}
-                             rowAssigned={todo.rowAssigned}
+                <TodoRowItem
+                    key={todo.rowNumber}
+                    rowNumber={todo.rowNumber}
+                    rowDesc={todo.rowDesc}
+                    rowAssigned={todo.rowAssigned}
                 />
             ))}
             </tbody>

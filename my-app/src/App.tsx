@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import TodoTable from "./components/TodoTable";
+import NewTodoForm from "./components/NewTodoForm";
 
 function App() {
 
@@ -7,19 +8,22 @@ function App() {
         {rowNumber: 1, rowDesc: 'Feed puppy', rowAssigned: 'User One'},
         {rowNumber: 2, rowDesc: 'Water plants', rowAssigned: 'User Two'},
         {rowNumber: 3, rowDesc: 'Make dinner', rowAssigned: 'User One'},
-        {rowNumber: 4, rowDesc: 'Do homeworks', rowAssigned: 'User Four'},
+        {rowNumber: 4, rowDesc: 'Do homeworks', rowAssigned: 'User Four'}
     ])
 
-    const addTodo = () => {
+    const addTodo = (description, assigned) => {
+        let rowNumber
         if (todos.length > 0) {
-            const newTodo = {
-                rowNumber: todos[todos.length - 1].rowNumber + 1,
-                rowDesc: 'New task',
-                rowAssigned: 'User Five'
-            }
-            setTodos([...todos, newTodo])
-            console.log(todos)
+            rowNumber = todos[todos.length - 1].rowNumber + 1
+        } else {
+            rowNumber = 1
         }
+        const newTodo = {
+            rowNumber: rowNumber,
+            rowDesc: description,
+            rowAssigned: assigned
+        }
+        setTodos(todos => [...todos, newTodo])
     }
 
     return (
@@ -30,9 +34,10 @@ function App() {
                 </div>
                 <div className="overflow-x-auto">
                     <TodoTable todos={todos}/>
-                    <button className={"bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"}
-                            onClick={addTodo}>Button
+                    <button className="bg-zinc-500 text-white px-4 py-2 rounded-lg mt-4" onClick={() => setTodos([])}>
+                        Clear List
                     </button>
+                    <NewTodoForm addTodo={addTodo}/>
                 </div>
             </div>
         </div>
