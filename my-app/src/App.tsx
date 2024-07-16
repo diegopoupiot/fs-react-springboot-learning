@@ -1,36 +1,32 @@
 import {useState} from 'react';
-import TodoTable from "./components/TodoTable";
-import NewTodoForm from "./components/NewTodoForm";
+import React from 'react';
+import {TodoModel} from "./classes/TodoModel";
+import {NewTodoForm} from "./components/NewTodoForm";
+import {TodoTable} from "./components/TodoTable";
 
-function App() {
+export const App = () => {
 
-    const [todos, setTodos] = useState([
-        {rowNumber: 1, rowDesc: 'Feed puppy', rowAssigned: 'User One'},
-        {rowNumber: 2, rowDesc: 'Water plants', rowAssigned: 'User Two'},
-        {rowNumber: 3, rowDesc: 'Make dinner', rowAssigned: 'User One'},
-        {rowNumber: 4, rowDesc: 'Do homeworks', rowAssigned: 'User Four'}
+    const [todos, setTodos] = useState<TodoModel[]>([
+        new TodoModel(1, 'Learn React', 'Me'),
+        new TodoModel(2, 'Learn TypeScript', 'Me'),
+        new TodoModel(3, 'Learn TailwindCSS', 'Me'),
     ])
-
     const [showAddTodoForm, setShowAddTodoForm] = useState(false)
 
     const addTodo = (description: string, assigned: string) => {
         let rowNumber = 0
         if (todos.length > 0) {
-            rowNumber = todos[todos.length - 1].rowNumber + 1
+            rowNumber = todos[todos.length - 1].id + 1
         } else {
             rowNumber = 1
         }
-        const newTodo = {
-            rowNumber: rowNumber,
-            rowDesc: description,
-            rowAssigned: assigned
-        }
-        setTodos(todos => [...todos, newTodo])
+        const newTodo = new TodoModel(rowNumber, description, assigned)
+        setTodos([...todos, newTodo])
     }
 
-    const deleteTodo = (deleteTodoRowNumber) => {
+    const deleteTodo = (deleteTodoRowNumber: number) => {
         let filtered = todos.filter(function (value) {
-            return value.rowNumber !== deleteTodoRowNumber;
+            return value.id !== deleteTodoRowNumber;
         })
         setTodos(filtered);
     }
@@ -58,5 +54,3 @@ function App() {
         </div>
     );
 }
-
-export default App;
