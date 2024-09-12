@@ -1,13 +1,13 @@
 import {LibraryServices} from "./LibraryServices";
 import {Heros} from "./Heros";
-import {Carousel} from "./Carousel";
 import {ExploreTopBooks} from "./ExploreTopBooks";
+import {MyCarousel} from "./MyCarousel";
 
 export const HomePage = () => {
     return (
         <>
             <ExploreTopBooks/>
-            <Carousel/>
+            <MyCarousel/>
             <Heros/>
             <LibraryServices/>
         </>

@@ -1,12 +1,18 @@
 import React from 'react';
+import BookModel from "../../models/BookModel";
 
-export const ReturnBook = ({books, currentSlide}: { books: { src: string, alt: string }[], currentSlide: number }) => {
-    const index = currentSlide % books.length;
+export const ReturnBook: React.FC<{ book: BookModel }> = (props) => {
     return (
         <div className="mx-2">
             <div className="flex justify-center items-center">
-                <img src={books[index].src} alt={books[index].alt}
-                     className="block mx-auto max-w-xs h-auto lg:max-w-xs"/>
+                {props.book.img ?
+                    <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')}
+                         width={151} height={233} alt={"book"}></img> :
+                    <img src={require('./../../Images/BooksImages/book-luv2code-1000.png')}
+                         width={151} height={233}
+                         alt={"book"}
+                         className="block mx-auto max-w-xs h-auto lg:max-w-xs"/>
+                }
             </div>
             <div className="text-center my-3">
                 <a
